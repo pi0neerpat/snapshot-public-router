@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import React from "react";
 import "../styles/index.css";
 import approvedAppsList from "../../approvedAppsList.js";
+import SEO from "../components/seo";
+import logoImage from "../images/favicon.png";
 
 function Index() {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch("/api/date");
-      const newDate = await res.text();
-      setDate(newDate);
-    }
-    getDate();
-  }, []);
   return (
     <main>
-      <Helmet>
-        <title>Snapshot Public Router</title>
-      </Helmet>
-      <h1>⚡ Snapshot Public Router</h1>
+      <SEO />
+      <h1>
+        <img alt="lightning bolt" width={50} src={logoImage} /> Snapshot Public
+        Router
+      </h1>
       <h2>
-        Forwards all events from{" "}
+        Forwards events from{" "}
         <a
           href="https://snapshot.page"
           target="_blank"
