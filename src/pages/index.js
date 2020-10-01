@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import "../styles/index.css";
+import approvedAppsList from "../../approvedAppsList.js";
 
 function Index() {
   const [date, setDate] = useState(null);
@@ -17,7 +18,7 @@ function Index() {
       <Helmet>
         <title>Snapshot Public Router</title>
       </Helmet>
-      <h1>Snapshot Public Router</h1>
+      <h1>⚡ Snapshot Public Router</h1>
       <h2>
         Forwards all events from{" "}
         <a
@@ -25,10 +26,23 @@ function Index() {
           target="_blank"
           rel="noreferrer noopener"
         >
-          ⚡ Snapshot
+          Snapshot
         </a>{" "}
         to your app.
+        <br />
+        Approved Apps:
       </h2>
+      <ul>
+        {approvedAppsList &&
+          approvedAppsList.map((app, index) => (
+            <p key={(index, app.name)}>
+              {app.name} -{" "}
+              <a href={app.endpoint} target="_blank" rel="noreferrer noopener">
+                {app.endpoint}
+              </a>
+            </p>
+          ))}
+      </ul>
       <p>
         Want to receive Snapshot events? Please make a Pull Request here:
         <br />
