@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 import metaImage from "../images/banner.png";
-import { capitalize } from "lodash";
 
 function SEO({
   description,
@@ -26,8 +25,7 @@ function SEO({
             htmlAttributes={{
               lang,
             }}
-            title={title}
-            titleTemplate={data.site.siteMetadata.title}
+            title={data.site.siteMetadata.title}
             meta={[
               {
                 name: "description",
