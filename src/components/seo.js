@@ -76,39 +76,6 @@ function SEO({
                 content:
                   image || `${data.site.siteMetadata.baseURL}${metaImage}`,
               },
-              {
-                name: "twitter:label1",
-                content: "Time to read",
-              },
-              {
-                name: "twitter:data1",
-                content: `${
-                  timeToRead
-                    ? `${timeToRead} ${timeToRead === 1 ? "minute" : "minutes"}`
-                    : "< 1 minute"
-                }`,
-              },
-              {
-                name: "twitter:label2",
-                content: `${
-                  categories && categories.length > 1
-                    ? "Categories"
-                    : "Category"
-                }`,
-              },
-              {
-                name: "twitter:data2",
-                content: `${
-                  categories
-                    ? categories.map(
-                        (category, i) =>
-                          `${i !== 0 ? " " : ""}${capitalize(
-                            category.replace("-", " ")
-                          )}`
-                      )
-                    : "egghead.io"
-                }`,
-              },
             ]
               .concat(
                 keywords.length > 0
