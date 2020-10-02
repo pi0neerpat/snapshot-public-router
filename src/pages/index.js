@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "../styles/index.css";
-import approvedAppsList from "../../approvedAppsList.js";
+import approvedAppList from "../../approvedAppList.js";
 import SEO from "../components/seo";
 import logoImage from "../images/favicon.png";
 
-function Index() {
+const Index = () => {
+  const [endpoint, setEndpoint] = useState("");
+  const onTestEndpoint = async () => {
+    await axios.post("/api/test", { endpoint });
+  };
   return (
     <main>
       <SEO />
@@ -22,29 +27,46 @@ function Index() {
           Snapshot
         </a>{" "}
         to your app.
-        <br />
-        Approved Apps:
       </h2>
-      <ul>
-        {approvedAppsList &&
-          approvedAppsList.map((app, index) => (
-            <p key={(index, app.name)}>
-              {app.name} -{" "}
-              <a href={app.endpoint} target="_blank" rel="noreferrer noopener">
-                {app.endpoint}
-              </a>
-            </p>
-          ))}
-      </ul>
       <p>
-        Want to receive Snapshot events? Please make a Pull Request here:
+        <b>Active Apps:</b>
+        <ul>
+          {approvedAppList &&
+            approvedAppList.map((app, index) => (
+              <p key={(index, app.name)}>
+                {app.name} -{" "}
+                <a
+                  href={app.endpoint}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {app.endpoint}
+                </a>
+              </p>
+            ))}
+        </ul>
+      </p>
+      <p>
+        Want to receive Snapshot events?
         <br />
-        <a href="https://github.com/pi0neerpat/snapshot-public-router">
-          https://github.com/pi0neerpat/snapshot-public-router
-        </a>
+        Send an example <code>proposal</code> and <code>vote</code> message to
+        your app:
+        <input
+          id="endpoint"
+          placeholder="https://myapp.com"
+          type="text"
+          defaultValue={endpoint}
+          onChange={(e) => setEndpoint(e.target.value)}
+        />
+        <button onClick={onTestEndpoint}>Go</button>
+      </p>
+      <p>
+        Ready for production? Please make a Pull Request{" "}
+        <a href="https://github.com/pi0neerpat/snapshot-public-router">here</a>.
+        <br />
       </p>
     </main>
   );
-}
+};
 
 export default Index;

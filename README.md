@@ -1,3 +1,3 @@
 Forwards all events from Snapshot
 
-Please add your app to `approvedAppsList.js`
+Please add your app to `approvedAppList.js`
