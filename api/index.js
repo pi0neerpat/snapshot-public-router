@@ -6,7 +6,6 @@ import { fortifyData } from "../utils/helpers";
 module.exports = async (req, res) => {
   try {
     const body = req.body;
-    console.log(body);
     for (var i = 0; i < approvedAppList.length; i++) {
       console.log("posting to ", approvedAppList[i].endpoint);
       await axios.post(approvedAppList[i].endpoint, fortifyData(body));

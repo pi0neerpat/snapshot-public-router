@@ -5,8 +5,19 @@ const DATA_NAME_KEY = "name";
 
 export const fortifyData = (raw) => {
   let data = { body: raw };
-  if (data.body.msg.token) {
-    const token = data.body.msg.token;
+  if (data.body.msg) {
+    let msg = data.body.msg;
+    if (typeof msg === "string") {
+      // Snapshot passes the message as a string
+      try {
+        msg = JSON.parse(msg);
+      } catch (e) {
+        console.log("Error parsing msg");
+        return console.log(e);
+      }
+    }
+    const { token } = msg;
+    if (!token) return;
     const space = spaceList[token];
     const { name, key } = space;
     if (space) {
