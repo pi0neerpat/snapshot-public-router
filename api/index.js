@@ -15,6 +15,8 @@ module.exports = async (req, res) => {
       body: `Sent updates to ${approvedAppList.length} apps.`,
     });
   } catch (e) {
+    console.log(e);
+    console.log(body);
     res.json({
       body: `Error sending updates: ${e}`,
     });
