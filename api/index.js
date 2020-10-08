@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import approvedAppList from "../approvedAppList.js";
+import spaceList from "../spaces.json";
 
 module.exports = async (req, res) => {
   try {
