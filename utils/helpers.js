@@ -26,5 +26,5 @@ export const parseSnapshotMessage = (raw) => {
       }
     }
   }
-  return { parsed: { body: body, ...rest }, token, slug };
+  return { parsed: { body, ...rest }, token, slug };
 };

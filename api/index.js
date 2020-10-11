@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     console.log(snapshotMessage);
     const { parsed, token, slug } = parseSnapshotMessage(snapshotMessage);
     const detailsMessage = `Slug: ${slug}, Token: ${token}`;
-    console.log(`Received msg - ${detailsMessage}`);
+    console.log(`Received message - ${detailsMessage}`);
     for (var i = 0; i < approvedAppList.length; i++) {
       console.log("Posting to ", approvedAppList[i].endpoint);
       await axios.post(approvedAppList[i].endpoint, parsed);
