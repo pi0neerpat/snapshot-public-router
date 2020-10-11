@@ -7,7 +7,6 @@ export const fortifyData = (raw) => {
   let data = { body: raw };
   if (data.body.msg) {
     let msg = data.body.msg;
-    console.log(msg);
     try {
       msg = JSON.parse(msg);
       data.body.msg = msg;
@@ -15,13 +14,14 @@ export const fortifyData = (raw) => {
       console.log("Error parsing msg");
     }
     const { token } = msg;
-    console.log(token);
     if (token) {
-      const space = spaceList[token];
+      const space = spaceList[token.toLowerCase()];
       const { name, key } = space;
       if (space) {
         data[DATA_SLUG_KEY] = key;
         data[DATA_NAME_KEY] = name;
+      } else {
+        console.log(`Error finding space for token ${token}`);
       }
     }
   }
