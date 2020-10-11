@@ -1,20 +1,18 @@
 import axios from "axios";
 
 import approvedAppList from "../approvedAppList.js";
-import { fortifyData } from "../utils/helpers";
+import { parseSnapshotMessage } from "../utils/helpers";
 
 module.exports = async (req, res) => {
   try {
-    const body = req.body;
-    console.log(body);
-    const fortified = fortifyData(body);
-    const detailsMessage = `Slug: ${fortified.slug}, Token: ${
-      fortified.body.msg && fortified.body.msg.token
-    }`;
+    const snapshotMessage = req.body;
+    console.log(snapshotMessage);
+    const { parsed, token, slug } = parseSnapshotMessage(snapshotMessage);
+    const detailsMessage = `Slug: ${slug}, Token: ${token}`;
     console.log(`Received msg - ${detailsMessage}`);
     for (var i = 0; i < approvedAppList.length; i++) {
       console.log("Posting to ", approvedAppList[i].endpoint);
-      await axios.post(approvedAppList[i].endpoint, fortified);
+      await axios.post(approvedAppList[i].endpoint, parsed);
     }
     res.json({
       body: `Sent to ${approvedAppList.length} apps. ${detailsMessage}`,

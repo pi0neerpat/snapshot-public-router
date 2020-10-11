@@ -39,7 +39,7 @@ vercel dev
 
 ## Testing
 
-Send requests using the Postman the collection `snapshot.postman_collection`
+Send requests using the provided Postman the collection `Snapshot Public Router`
 
 ## Going to Production
 

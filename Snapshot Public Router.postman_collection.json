@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "039724cb-f1c4-4e02-b8e1-f002a2356add",
+		"name": "Snapshot Public Router",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Example Proposal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"network\": \"testnet\",\n    \"body\": {\n        \"address\": \"0xDd919FecF317d05d49324757724FabceF040cd58\",\n        \"msg\": \"{\\r\\n  \\\"version\\\":\\\"0.1.2\\\",\\r\\n  \\\"timestamp\\\":\\\"1600848091\\\",\\r\\n  \\\"token\\\":\\\"0xAba8cAc6866B83Ae4eec97DD07ED254282f6aD8A\\\",\\r\\n  \\\"type\\\":\\\"proposal\\\",\\r\\n  \\\"payload\\\":{\\r\\n    \\\"name\\\":\\\"Keep only YAMv3 for growth, and end YAMv1 and YAMv2\\\",\\r\\n    \\\"body\\\":\\\"Due to various YAM versions available, it is affecting the adoption of YAMv3. Thus community should adopt only one latest version which is YAMv3 and define the final date where version 2 conversion to version 3 will end.\\\",\\r\\n    \\\"choices\\\":[\\r\\n      \\\"Keep only YAM v3 and set a final date for conversion from older YAM version\\\",\\r\\n      \\\"Continue to support YAM v2 to v3 without any end date\\\"\\r\\n    ],\\r\\n    \\\"start\\\":1600776000,\\r\\n    \\\"end\\\":1600948800,\\r\\n    \\\"snapshot\\\":\\\"10925650\\\",\\r\\n    \\\"metadata\\\":{}\\r\\n  }\\r\\n}\",\n        \"sig\": \"0xa6e84a708e6d8318fad43bf47c9077d3ca84ba7237b75f71a8ef202efac70546482e3db5c5987ac234217f90e9cf9b541aefcbf82ce7de8d78f0c197c5a49a271b\",\n        \"authorIpfsHash\": \"QmQAkg2d4RyLEiWDg5LHHaVkRxpnKemoQivFJDcbscoh1B\",\n        \"relayerIpfsHash\": \"Qmecpm2V1PkeLaPZtW3hjqYVz75EZbuGyjVbsTbYRfy71X\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.1.165:3000/api",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"165"
+					],
+					"port": "3000",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Example Vote",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"network\": \"testnet\",\n    \"body\": {\n        \"address\": \"0x72eb41AE7f943445Da9932662d31A06D56A3cfAa\",\n        \"msg\": \"{\\r\\n  \\\"version\\\":\\\"0.1.1\\\",\\r\\n  \\\"timestamp\\\":\\\"1598864758\\\",\\r\\n  \\\"token\\\":\\\"0xAba8cAc6866B83Ae4eec97DD07ED254282f6aD8A\\\",\\r\\n  \\\"type\\\":\\\"vote\\\",\\r\\n  \\\"payload\\\":{\\\"proposal\\\":\\\"QmXAZP8tYwX2zZz5EzfxLZUYJt6TM9EmxY1L4qodhZ5zcZ\\\",\\\"choice\\\":1}\\r\\n}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.1.165:3000/api",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"165"
+					],
+					"port": "3000",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

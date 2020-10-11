@@ -3,28 +3,29 @@ import spaceList from "./spaces.json";
 const DATA_SLUG_KEY = "slug";
 const DATA_NAME_KEY = "name";
 
-export const fortifyData = (raw) => {
-  let data = { body: raw };
-  if (data.body.msg) {
-    let msg = data.body.msg;
+export const parseSnapshotMessage = (raw) => {
+  let { network, body: parsed } = raw;
+  console.log(parsed);
+  let token = null;
+  let slug = null;
+  if (parsed) {
     try {
-      msg = JSON.parse(msg);
-      data.body.msg = msg;
+      parsed.msg = JSON.parse(parsed.msg);
     } catch (e) {
       console.log("Error parsing msg");
     }
-    console.log(msg);
-    const { token } = data.body.msg;
+    token = parsed.msg.token;
     if (token) {
       const space = spaceList[token.toLowerCase()];
-      const { name, key } = space;
       if (space) {
-        data[DATA_SLUG_KEY] = key;
-        data[DATA_NAME_KEY] = name;
+        const { name, key } = space;
+        slug = key;
+        parsed[DATA_SLUG_KEY] = slug;
+        parsed[DATA_NAME_KEY] = name;
       } else {
         console.log(`Error finding space for token ${token}`);
       }
     }
   }
-  return data;
+  return { parsed, token, slug };
 };
