@@ -1,4 +1,5 @@
 const exampleProposal = {
+  network: "testnet",
   address: "0xDd919FecF317d05d49324757724FabceF040cd58",
   msg: `{
   "version":"0.1.2",
@@ -25,6 +26,7 @@ const exampleProposal = {
 };
 
 const exampleVote = {
+  network: "testnet",
   address: "0x72eb41AE7f943445Da9932662d31A06D56A3cfAa",
   msg: `{
   "version":"0.1.1",

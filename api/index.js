@@ -11,7 +11,9 @@ module.exports = async (req, res) => {
       await axios.post(approvedAppList[i].endpoint, fortifyData(body));
     }
     res.json({
-      body: `Sent updates to ${approvedAppList.length} apps.`,
+      body: `Sent updates to ${approvedAppList.length} apps. ${fortifyData(
+        body
+      )}`,
     });
   } catch (e) {
     console.log(e);

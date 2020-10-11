@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { exampleProposal, exampleVote } from "../testData.js";
+import { exampleProposal, exampleVote } from "../utils/testData.js";
 import { fortifyData } from "../utils/helpers";
 
 module.exports = async (req, res) => {
