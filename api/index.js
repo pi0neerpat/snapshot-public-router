@@ -6,8 +6,11 @@ import { fortifyData } from "../utils/helpers";
 module.exports = async (req, res) => {
   try {
     const body = req.body;
+    console.log(body);
     const fortified = fortifyData(body);
-    const detailsMessage = `Slug: ${fortified.slug}, Token: ${fortified.body.msg.token}`;
+    const detailsMessage = `Slug: ${fortified.slug}, Token: ${
+      fortified.body.msg && fortified.body.msg.token
+    }`;
     console.log(`Received msg - ${detailsMessage}`);
     for (var i = 0; i < approvedAppList.length; i++) {
       console.log("Posting to ", approvedAppList[i].endpoint);
