@@ -13,6 +13,7 @@ export const fortifyData = (raw) => {
     } catch (e) {
       console.log("Error parsing msg");
     }
+    console.log(msg);
     const { token } = data.body.msg;
     if (token) {
       const space = spaceList[token.toLowerCase()];
