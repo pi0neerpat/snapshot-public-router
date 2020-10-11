@@ -4,28 +4,27 @@ const DATA_SLUG_KEY = "slug";
 const DATA_NAME_KEY = "name";
 
 export const parseSnapshotMessage = (raw) => {
-  let { network, body: parsed } = raw;
-  console.log(parsed);
+  let { body, ...rest } = raw;
   let token = null;
   let slug = null;
-  if (parsed) {
+  if (body) {
     try {
-      parsed.msg = JSON.parse(parsed.msg);
+      body.msg = JSON.parse(body.msg);
     } catch (e) {
       console.log("Error parsing msg");
     }
-    token = parsed.msg.token;
+    token = body.msg.token;
     if (token) {
       const space = spaceList[token.toLowerCase()];
       if (space) {
         const { name, key } = space;
         slug = key;
-        parsed[DATA_SLUG_KEY] = slug;
-        parsed[DATA_NAME_KEY] = name;
+        body[DATA_SLUG_KEY] = slug;
+        body[DATA_NAME_KEY] = name;
       } else {
         console.log(`Error finding space for token ${token}`);
       }
     }
   }
-  return { parsed, token, slug };
+  return { parsed: { body: body, ...rest }, token, slug };
 };
