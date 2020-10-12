@@ -21,6 +21,7 @@ export const parseSnapshotMessage = (raw) => {
         slug = key;
         body[DATA_SLUG_KEY] = slug;
         body[DATA_NAME_KEY] = name;
+        console.log(body);
       } else {
         console.log(`Error finding space for token ${token}`);
       }
