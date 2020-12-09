@@ -18,7 +18,6 @@ export const parseSnapshotMessage = (raw) => {
       body[SLUG_KEY] = slug;
       body[NAME_KEY] = spaceList[slug.toLowerCase()].name;
       token = spaceList[slug.toLowerCase()].token;
-      console.log(body);
     } catch (e) {
       console.error(
         `Error finding details for space "${space}". Try running the script "importSpaces" to update the space data.`
