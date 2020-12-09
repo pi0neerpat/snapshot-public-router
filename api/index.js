@@ -11,8 +11,13 @@ module.exports = async (req, res) => {
     const detailsMessage = `Slug: ${slug}, Token: ${token}`;
     console.log(`Received message - ${detailsMessage}`);
     for (var i = 0; i < approvedAppList.length; i++) {
-      console.log("Posting to ", approvedAppList[i].endpoint);
-      await axios.post(approvedAppList[i].endpoint, parsed);
+      try {
+        const url = approvedAppList[i].endpoint;
+        console.log("Posting to ", url);
+        await axios.post(url, parsed);
+      } catch (e) {
+        console.log(`Error sending to ${url} ${e}`);
+      }
     }
     res.json({
       body: `Sent to ${approvedAppList.length} apps. ${detailsMessage}`,

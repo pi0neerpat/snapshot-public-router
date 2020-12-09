@@ -16,8 +16,6 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > Forward events from Snapshot to your app
->
-> >
 
 ### 🏠 [Homepage](https://snapshot.collab.land/)
 
