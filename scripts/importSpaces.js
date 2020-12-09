@@ -12,7 +12,7 @@ const importSpaces = async () => {
     dirs.forEach((dir, index) => {
       const space = require(path.join(directoryPath, dir));
       const { token, key, name } = space;
-      if (key) spaces[token.toLowerCase()] = { key, name };
+      if (key) spaces[key.toLowerCase()] = { token, name };
     });
   });
   fs.writeFileSync(`utils/spaces.json`, JSON.stringify(spaces), (err) => {

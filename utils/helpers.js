@@ -1,7 +1,7 @@
 import spaceList from "./spaces.json";
 
-const DATA_SLUG_KEY = "slug";
-const DATA_NAME_KEY = "name";
+const SLUG_KEY = "slug";
+const NAME_KEY = "name";
 
 export const parseSnapshotMessage = (raw) => {
   let { body, ...rest } = raw;
@@ -11,21 +11,33 @@ export const parseSnapshotMessage = (raw) => {
     try {
       body.msg = JSON.parse(body.msg);
     } catch (e) {
-      console.log("Error parsing msg");
+      console.error("Error parsing msg");
     }
-    token = body.msg.token;
-    if (token) {
-      const space = spaceList[token.toLowerCase()];
-      if (space) {
-        const { name, key } = space;
-        slug = key;
-        body[DATA_SLUG_KEY] = slug;
-        body[DATA_NAME_KEY] = name;
-        console.log(body);
-      } else {
-        console.log(`Error finding space for token ${token}`);
-      }
+    ({ space: slug } = body.msg);
+    try {
+      body[SLUG_KEY] = slug;
+      body[NAME_KEY] = spaceList[slug.toLowerCase()].name;
+      token = spaceList[slug.toLowerCase()].token;
+      console.log(body);
+    } catch (e) {
+      console.error(
+        `Error finding details for space "${space}". Try running the script "importSpaces" to update the space data.`
+      );
     }
+    // TODO: Previous Snapshot API. delete if unused
+    // ({ token } = body.msg);
+    // if (token) {
+    //   const space = spaceList[token.toLowerCase()];
+    //   if (space) {
+    //     const { name, key } = space;
+    //     slug = key;
+    //     body[DATA_SLUG_KEY] = slug;
+    //     body[DATA_NAME_KEY] = name;
+    //     console.log(body);
+    //   } else {
+    //     console.log(`Error finding space for token ${token}`);
+    //   }
+    // }
   }
-  return { parsed: { body, ...rest }, token, slug };
+  return { parsed: { body, ...rest }, slug, token };
 };
